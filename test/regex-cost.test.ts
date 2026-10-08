@@ -90,7 +90,13 @@ describe('readRegexCost', () => {
       ['\\p{Script=Greek}', 'u'],
       ['(?<=a)(?<!b)(?=c)(?!d)', ''],
     ] as const) {
-      new RegExp(source, flags);
+      // A pattern this host cannot compile never reaches the reader: inline
+      // modifiers, for one, arrived in V8 after Node 22.
+      try {
+        new RegExp(source, flags);
+      } catch {
+        continue;
+      }
       expect(typeof readRegexCost(source, flags)).not.toBe('string');
     }
   });
