@@ -1,5 +1,5 @@
 {
-  "name": "jsrift",
+  "name": "@jsrift/core",
   "version": "0.1.0",
   "description": "Scope-aware JavaScript, TypeScript and JSX deobfuscator that runs in Node and in the browser.",
   "license": "MIT",
@@ -7,7 +7,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jsrift/jsrift.git"
+    "url": "https://github.com/jsrift/jsrift.git"
   },
   "homepage": "https://jsrift.github.io",
   "bugs": {

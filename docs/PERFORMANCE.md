@@ -493,7 +493,7 @@ npm ci && npm run build
 
 Every column in sections 1 and 3 comes from `metadata.passes` and
 `metadata.stats` on a `deobfuscate()` result. The command-line front end
-(`npm install -g jsrift-cli`) prints the same data: `--stats` renders the
+(`npm install -g @jsrift/cli`) prints the same data: `--stats` renders the
 per-pass table and the result block on stderr, and `--json` emits the whole
 metadata object.
 

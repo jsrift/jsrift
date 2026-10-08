@@ -386,7 +386,7 @@ export interface PerformanceOptions {
    * A syntax tree is a shared mutable graph and does not shard, so the engine
    * is single-threaded wherever it is called and has nothing to configure. The
    * parallelism that is worth having is getting the whole run off the calling
-   * thread, which is `WorkerClient` and the `jsrift/worker` entry point - the
+   * thread, which is `WorkerClient` and the `@jsrift/core/worker` entry point - the
    * caller's decision, not a knob inside a run.
    */
 }

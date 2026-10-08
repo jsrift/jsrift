@@ -6,7 +6,7 @@
  * getting the entire engine off the UI thread so a 4 MB file does not freeze the
  * tab for several seconds. That is what this module provides.
  *
- * Bundlers pick this up as `jsrift/worker`.
+ * Bundlers pick this up as `@jsrift/core/worker`.
  */
 import { deobfuscate } from '../index.js';
 import type { WorkerRequest, WorkerResponse } from './protocol.js';

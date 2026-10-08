@@ -7,11 +7,11 @@ The web app at https://jsrift.github.io runs this same engine.
 ## Install
 
 ```bash
-npm install jsrift
+npm install @jsrift/core
 ```
 
 ```ts
-import { deobfuscate } from 'jsrift';
+import { deobfuscate } from '@jsrift/core';
 
 const { code, metadata } = await deobfuscate(obfuscatedSource);
 
@@ -21,7 +21,7 @@ console.log(metadata.renames);    // every rename, with the evidence for it
 ```
 
 The package ships an ESM build (`import`), a CommonJS build (`require`), type
-declarations, and a `jsrift/worker` entry point for running the engine off the
+declarations, and a `@jsrift/core/worker` entry point for running the engine off the
 main thread (see [Running off the main thread](#running-off-the-main-thread)).
 Node 20.19 or later is required.
 
@@ -210,7 +210,7 @@ import {
   PrintFailedError,                       // thrown when the printer runs out of stack
   WorkerClient, workersAvailable,         // off-main-thread execution
   toTransferable,                         // strip non-cloneable fields before postMessage
-} from 'jsrift';
+} from '@jsrift/core';
 ```
 
 That list is exhaustive: those thirteen values are the complete runtime export
@@ -547,7 +547,7 @@ For large inputs in a browser, run the engine in a Worker so the tab stays
 responsive:
 
 ```ts
-import { WorkerClient } from 'jsrift';
+import { WorkerClient } from '@jsrift/core';
 
 const client = new WorkerClient({
   createWorker: () => new Worker(new URL('jsrift/worker', import.meta.url), { type: 'module' }),

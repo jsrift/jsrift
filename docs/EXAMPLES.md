@@ -14,7 +14,7 @@ one, two, three and four times; the four-layer sample is 5,384 bytes.
 ## 1. Library basics
 
 ```ts
-import { deobfuscate } from 'jsrift';
+import { deobfuscate } from '@jsrift/core';
 
 const { code, metadata } = await deobfuscate(source);
 ```
@@ -37,7 +37,7 @@ Parses once and mutates nothing, so it is cheap enough to run while the user is
 still typing.
 
 ```ts
-import { analyze } from 'jsrift';
+import { analyze } from '@jsrift/core';
 
 const { language, sourceType, detections, bytes, lines } = analyze(source);
 ```
@@ -414,10 +414,10 @@ and `clean.js.map` alongside it (2,704 bytes for the two-layer sample).
 
 ## 8. Command line
 
-The command-line front end is published separately as `jsrift-cli`:
+The command-line front end is published separately as `@jsrift/cli`:
 
 ```bash
-npm install -g jsrift-cli        # provides the `jsrift` command
+npm install -g @jsrift/cli        # provides the `jsrift` command
 jsrift --help
 ```
 
@@ -560,7 +560,7 @@ runs the engine in a Worker.
 ### Using the built-in client
 
 ```ts
-import { WorkerClient, workersAvailable } from 'jsrift';
+import { WorkerClient, workersAvailable } from '@jsrift/core';
 
 if (!workersAvailable()) throw new Error('No Worker in this environment');
 
@@ -589,7 +589,7 @@ signal terminates the worker; that is the whole mechanism.
 
 ### The tree-shaking hazard
 
-`jsrift/worker` is a side-effect-only module. This package's `package.json`
+`@jsrift/core/worker` is a side-effect-only module. This package's `package.json`
 declares `"sideEffects": ["./dist/worker.js"]` so a bundler will not drop it.
 If your toolchain ignores that field, or you are re-exporting the engine
 through a package of your own that declares `"sideEffects": false`, write a
@@ -598,7 +598,7 @@ can elide. A minimal one looks like this:
 
 ```ts
 // deobfuscate.worker.ts
-import { deobfuscate, type DeobfuscateOptions } from 'jsrift';
+import { deobfuscate, type DeobfuscateOptions } from '@jsrift/core';
 
 interface Request {
   id: number;
