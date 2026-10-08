@@ -1,0 +1,27 @@
+{
+  /*
+   * The test suite, typechecked.
+   *
+   * `tsconfig.json` restricts `include` to `src/**` because that build has a
+   * `rootDir` of `src` and emits `dist`; adding `test/**` there would drag the
+   * tests into the published package. So the tests get their own project,
+   * `noEmit`, with the same strictness as the source. Without it the suite is
+   * only ever checked by the runtime, and a call that does not typecheck still
+   * passes as long as the extra argument happens to be ignored - which is
+   * exactly how two calls to a one-parameter helper survived in
+   * `test/control-flow.test.ts`.
+   */
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "rootDir": "."
+  },
+  // `src` is not listed: every source file a test imports is pulled into the
+  // program anyway, and the rest is what `npm run typecheck`'s first `tsc`
+  // covers. Listing it would typecheck the whole source tree a second time.
+  "include": ["test/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}
